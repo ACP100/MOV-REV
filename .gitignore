@@ -1,8 +1,10 @@
 /.venv
-/frontend
 .env
 __pycache__/
 *.pyc
 movie_reviews.db
 tst.txt
 
+/frontend/node_modules
+/frontend/build
+/frontend/package(back).json
