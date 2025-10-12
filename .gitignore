@@ -1,0 +1,10 @@
+/.venv
+/frontend
+.env
+__pycache__/
+*.pyc
+
+movie_reviews.db
+
+.env
+
