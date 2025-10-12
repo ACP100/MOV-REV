@@ -48,7 +48,7 @@ function Home() {
     <div>
       <header className="header">
         <div className="nav-container">
-          <h1 className="app-title">Movie Review App</h1>
+          <h1 className="app-title">mov rev</h1>
           
           <nav className="nav-menu">
             {isLoggedIn ? (

@@ -7,27 +7,55 @@ function ProfilePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      setError('Please log in to view your profile');
-      setLoading(false);
-      return;
-    }
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token');
+  //   if (!token) {
+  //     setError('Please log in to view your profile');
+  //     setLoading(false);
+  //     return;
+  //   }
 
-    axios
-      .get('http://localhost:8000/api/users/me/reviews', {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((res) => {
-        setReviews(res.data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error('Error fetching reviews:', err);
-        setError('Failed to load your reviews');
-        setLoading(false);
-      });
+  //   axios
+  //     .get('http://localhost:8000/api/users/me/reviews', {
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     })
+  //     .then((res) => {
+  //       setReviews(res.data);
+  //       setLoading(false);
+  //     })
+  //     .catch((err) => {
+  //       console.error('Error fetching reviews:', err);
+  //       setError('Failed to load your reviews');
+  //       setLoading(false);
+  //     });
+  // }, []);
+  useEffect(() => {
+    const fetchReviews = async () => { // <--- Make the inner function async
+        const token = localStorage.getItem('token');
+        if (!token) {
+          setError('Please log in to view your profile');
+          setLoading(false);
+          return;
+        }
+
+        try {
+            // 1. ADD THIS LINE: Fetch the user's reviews using async/await
+            const reviewsResponse = await axios.get('http://localhost:8000/api/users/me/reviews', {
+                headers: { Authorization: `Bearer ${token}` },
+            });
+            
+            // 2. Process the data (without fetching movie titles yet)
+            setReviews(reviewsResponse.data);
+            setLoading(false);
+
+        } catch (err) {
+            console.error('Error fetching reviews:', err);
+            setError('Failed to load your reviews');
+            setLoading(false);
+        }
+    };
+    
+    fetchReviews(); // <--- Call the async function
   }, []);
 
   const handleLogout = () => {
@@ -70,7 +98,7 @@ function ProfilePage() {
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
                   <h3 className="review-title">{review.title}</h3>
                   <div className="movie-rating" style={{ fontSize: '0.9rem' }}>
-                    ⭐ {review.rating}/10
+                    ⭐ {review.rating}/5
                   </div>
                 </div>
                 <p style={{ color: '#cccccc', lineHeight: '1.6' }}>{review.comment}</p>

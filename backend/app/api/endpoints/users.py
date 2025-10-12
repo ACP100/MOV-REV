@@ -49,6 +49,8 @@ from app.schemas.user import UserCreate, UserOut
 from app.api.database import get_db
 from app.api.auth import get_password_hash, verify_password, create_access_token
 from pydantic import BaseModel
+from app.api.auth import get_current_user
+from app.models.review import Review
 
 # Add this new schema for login
 class LoginRequest(BaseModel):
@@ -96,3 +98,14 @@ def login(login_data: LoginRequest, db: Session = Depends(get_db)):
             "email": user.email
         }
     }
+
+
+@router.get("/users/me", response_model=UserOut)
+def get_current_user_info(current_user: User = Depends(get_current_user)):
+    return current_user
+
+@router.get("/users/me/reviews")
+def get_my_reviews(db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
+    reviews = db.query(Review).filter(Review.user_id == current_user.id).all()
+    return reviews
+

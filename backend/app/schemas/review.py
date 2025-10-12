@@ -14,6 +14,7 @@ class ReviewOut(BaseModel):
     title: str
     rating: float
     comment: str
+    username: str
 
     class Config:
         orm_mode = True
