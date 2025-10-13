@@ -1,4 +1,68 @@
-import { useState } from 'react';
+// import { useState } from 'react';
+// import axios from 'axios';
+// import { useNavigate, Link } from 'react-router-dom';
+
+// function Register() {
+//   const [formData, setFormData] = useState({
+//     username: '',
+//     email: '',
+//     password: ''
+//   });
+//   const [error, setError] = useState('');
+//   const [success, setSuccess] = useState('');
+//   const [loading, setLoading] = useState(false);
+//   const navigate = useNavigate();
+
+//   const handleChange = (e) => {
+//     setFormData({
+//       ...formData,
+//       [e.target.name]: e.target.value
+//     });
+//   };
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     setError('');
+//     setSuccess('');
+//     setLoading(true);
+
+//     try {
+//       await axios.post('http://localhost:8000/api/register', formData);
+//       setSuccess('Registration successful! Redirecting to login...');
+      
+//       // Redirect to login after 2 seconds
+//       setTimeout(() => {
+//         navigate('/login');
+//       }, 2000);
+      
+   
+//   };
+
+//   return (
+//     <div className="auth-container">
+//       <div className="auth-card">
+//         <h1 className="auth-title">Create Account</h1>
+//         <p className="auth-subtitle">Join our movie community</p>
+        
+//         {error && <div className="error-message">{error}</div>}
+//         {success && <div className="success-message">{success}</div>}
+        
+//         <form onSubmit={handleSubmit} className="auth-form">
+         
+//         </form>
+        
+//         <div className="auth-link">
+//           Already have an account? <Link to="/login">Sign in here</Link>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default Register;
+
+
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 
@@ -12,6 +76,19 @@ function Register() {
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  // Add blur to body when component mounts
+  useEffect(() => {
+    document.body.classList.add('auth-page-active');
+    
+    return () => {
+      document.body.classList.remove('auth-page-active');
+    };
+  }, []);
+
+  const handleClose = () => {
+    navigate('/');
+  };
 
   const handleChange = (e) => {
     setFormData({
@@ -48,7 +125,8 @@ function Register() {
   };
 
   return (
-    <div className="auth-container">
+    <div className="auth-fullscreen-overlay">
+      <button className="close-overlay-btn" onClick={handleClose}>✕</button>
       <div className="auth-card">
         <h1 className="auth-title">Create Account</h1>
         <p className="auth-subtitle">Join our movie community</p>

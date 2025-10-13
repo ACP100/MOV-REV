@@ -4,8 +4,7 @@ import MoviePage from './pages/MoviePage';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ProfilePage from './pages/ProfilePage';
-import './styles/global.css'; // Add this line
-
+import './styles/global.css';
 
 function App() {
   return (
