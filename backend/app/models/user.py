@@ -1,6 +1,8 @@
 # user.py
 from sqlalchemy import Column, Integer, String
 from app.api.database import Base
+from sqlalchemy.orm import relationship 
+
 
 class User(Base):
     __tablename__ = "users"
@@ -8,3 +10,5 @@ class User(Base):
     username = Column(String, unique=True, index=True)
     email = Column(String, unique=True, index=True)
     hashed_password = Column(String)
+    movie_preferences = relationship("UserMoviePreference", back_populates="user")
+

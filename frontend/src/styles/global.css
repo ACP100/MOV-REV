@@ -15,7 +15,7 @@ body {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -26,6 +26,8 @@ body {
   padding: 1rem 0;
   box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
   border-bottom: 1px solid #333333;
+  width: 100%; /* Ensure full width */
+
 }
 
 .app-title {
@@ -1492,4 +1494,607 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+
+
+
+
+/* Movie Card Top Fade and Actions */
+.movie-card-top-fade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
+  padding: 1rem 1rem 2rem 1rem;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+  z-index: 5;
+}
+
+.movie-card-fade:hover .movie-card-top-fade {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.movie-card-top-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.top-action-btn {
+  /* background: rgba(128, 128, 128, 0.7); */
+  /* border: 1px solid rgba(255, 255, 255, 0.3); */
+  /* border-radius: 8px; */
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  background: transparent !important;  /* removes any color */
+  backdrop-filter: none !important;    /* removes blur */
+  box-shadow: none !important;         /* removes shadow if any */
+  border: none !important;             /* ensures no border */
+
+}
+
+.top-action-btn:hover {
+  background: rgba(255, 255, 255, 0.8);
+  transform: scale(1.1);
+  border-color: #ffffff;
+}
+
+.top-action-btn.active {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: #ffffff;
+}
+
+.top-action-btn.active:hover {
+  background: rgba(255, 255, 255, 1);
+}
+
+.action-icon {
+  width: 30px;
+  height: 30px;
+  filter: brightness(0) invert(0.7); /* Grey color for inactive */
+  transition: all 0.3s ease;
+  background: transparent !important;
+
+}
+
+.top-action-btn.active .action-icon {
+  filter: brightness(0) invert(1); /* White color for active */
+}
+
+.top-action-btn:hover .action-icon {
+  filter: brightness(0) invert(1); /* White on hover */
+}
+
+/* Adjust for scroll containers */
+.movie-scroll-container .movie-card-top-fade {
+  padding: 0.8rem 0.8rem 1.5rem 0.8rem;
+}
+
+.movie-scroll-container .top-action-btn {
+  width: 32px;
+  height: 32px;
+}
+
+.movie-scroll-container .action-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* Ensure proper z-index for clickability */
+.movie-card-fade {
+  position: relative;
+}
+
+.movie-card-fade-content {
+  z-index: 2;
+}
+
+.movie-card-top-fade {
+  z-index: 3;
+}
+
+
+
+/* Profile Page Styles */
+.profile-header {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.profile-info {
+  margin-bottom: 2rem;
+}
+
+.profile-username {
+  font-size: 2.5rem;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.profile-email {
+  color: #cccccc;
+  font-size: 1.1rem;
+}
+
+/* Profile Tabs */
+.profile-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.profile-tabs .tab-button {
+  padding: 12px 24px;
+  background: #1a1a1a;
+  border: 1px solid #333333;
+  color: #cccccc;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.profile-tabs .tab-button:hover {
+  background: #333333;
+  border-color: #ffffff;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.profile-tabs .tab-button.active {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #000000;
+  transform: translateY(-2px);
+}
+
+/* Tab Content */
+.tab-content {
+  min-height: 400px;
+}
+
+/* Reviews Grid */
+.reviews-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.review-card {
+  background: #0a0a0a;
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid #333333;
+  transition: all 0.3s ease;
+}
+
+.review-card:hover {
+  border-color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.review-movie-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.review-movie-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.review-movie-title {
+  color: #ffffff;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.review-movie-title:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.review-rating {
+  background: #1a1a1a;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  color: #ffffff;
+  border: 1px solid #333333;
+}
+
+.review-comment {
+  color: #cccccc;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.review-date {
+  color: #888888;
+  font-size: 0.9rem;
+  text-align: right;
+}
+
+/* No Content Message */
+.no-content-message {
+  text-align: center;
+  padding: 3rem;
+  color: #cccccc;
+}
+
+.no-content-message h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.no-content-message p {
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+/* Movies Section */
+.movies-section {
+  padding: 1rem 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-username {
+    font-size: 2rem;
+  }
+  
+  .profile-tabs {
+    gap: 0.5rem;
+  }
+  
+  .profile-tabs .tab-button {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+  
+  .review-movie-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .review-rating {
+    align-self: flex-start;
+  }
+  
+  .stats-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-tabs {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .profile-tabs .tab-button {
+    width: 200px;
+  }
+  
+  .stats-container {
+    grid-template-columns: 1fr;
+  }
+}/* Profile Page Styles */
+.profile-header {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.profile-info {
+  margin-bottom: 2rem;
+}
+
+.profile-username {
+  font-size: 2.5rem;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.profile-email {
+  color: #cccccc;
+  font-size: 1.1rem;
+}
+
+/* Profile Tabs */
+.profile-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.profile-tabs .tab-button {
+  padding: 12px 24px;
+  background: #1a1a1a;
+  border: 1px solid #333333;
+  color: #cccccc;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.profile-tabs .tab-button:hover {
+  background: #333333;
+  border-color: #ffffff;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.profile-tabs .tab-button.active {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #000000;
+  transform: translateY(-2px);
+}
+
+/* Tab Content */
+.tab-content {
+  min-height: 400px;
+}
+
+/* Reviews Grid */
+.reviews-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.review-card {
+  background: #0a0a0a;
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid #333333;
+  transition: all 0.3s ease;
+}
+
+.review-card:hover {
+  border-color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.review-movie-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.review-movie-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.review-movie-title {
+  color: #ffffff;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.review-movie-title:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.review-rating {
+  background: #1a1a1a;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  color: #ffffff;
+  border: 1px solid #333333;
+}
+
+.review-comment {
+  color: #cccccc;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.review-date {
+  color: #888888;
+  font-size: 0.9rem;
+  text-align: right;
+}
+
+/* No Content Message */
+.no-content-message {
+  text-align: center;
+  padding: 3rem;
+  color: #cccccc;
+}
+
+.no-content-message h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.no-content-message p {
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+/* Movies Section */
+.movies-section {
+  padding: 1rem 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-username {
+    font-size: 2rem;
+  }
+  
+  .profile-tabs {
+    gap: 0.5rem;
+  }
+  
+  .profile-tabs .tab-button {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+  
+  .review-movie-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .review-rating {
+    align-self: flex-start;
+  }
+  
+  .stats-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-tabs {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .profile-tabs .tab-button {
+    width: 200px;
+  }
+  
+  .stats-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* Profile Page Image Button Styles */
+.profile-page .button-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  filter: brightness(0) invert(1); /* Make white */
+}
+
+.profile-page .nav-button.home-button,
+.profile-page .nav-button.logout-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Profile Page Stats Icons */
+.profile-page .stats-icon-img {
+  width: 40px;
+  height: 40px;
+  filter: brightness(0) invert(1); /* Make white */
+}
+
+/* Profile Page Tab Icons */
+.profile-page .tab-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  filter: brightness(0) invert(1); /* Make white */
+}
+
+.profile-page .tab-button.active .tab-icon {
+  filter: brightness(0) invert(0); /* Make black when active */
+}
+
+/* Profile Page Rating Star */
+.profile-page .rating-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+  filter: brightness(0) invert(1); /* Make white */
+}
+
+.profile-page .movie-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.profile-page .review-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* For the home and logout buttons in header */
+
+.logout-image-button img,
+.profile-image-button img {
+  width: 32px; /* Adjust as needed */
+  height: 32px;
+  object-fit: contain;
+}
+
+.home-image-button img
+{
+  width: 20px; /* Adjust as needed */
+  height: 20px;
+  object-fit: contain;
+}
+/* For tab icons */
+.tab-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+/* For stats icons */
+.stats-icon-img {
+  width: 24px;
+  height: 24px;
+}
+
+/* For rating icons */
+.rating-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* For button icons in general */
+.button-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 6px;
 }

@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.api.endpoints import users, movies, reviews
+from app.api.endpoints import users, movies, reviews, user_preferences
 from app.api.database import Base, engine
 
 app = FastAPI()
@@ -21,3 +21,4 @@ Base.metadata.create_all(bind=engine)
 app.include_router(users.router, prefix="/api")
 app.include_router(movies.router, prefix="/api")
 app.include_router(reviews.router, prefix="/api")
+app.include_router(user_preferences.router, prefix="/api")  # Add this line
