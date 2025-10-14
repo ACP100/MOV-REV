@@ -6,6 +6,7 @@ from app.models.user_preference import UserMoviePreference
 from app.models.review import Review
 from app.api.auth import get_current_user
 import requests
+from datetime import datetime
 import os
 
 router = APIRouter()
@@ -44,7 +45,6 @@ def get_user_profile_data(
         def get_movie_details(movie_id):
             try:
                 url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={TMDB_API_KEY}"
-                print(f"Fetching movie details for ID: {movie_id}")
                 response = requests.get(url, timeout=10)
                 if response.status_code == 200:
                     return response.json()
@@ -110,7 +110,6 @@ def get_user_profile_data(
             }
         }
         
-        print("Successfully prepared profile data")
         return response_data
         
     except Exception as e:
@@ -121,3 +120,132 @@ def get_user_profile_data(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Error fetching profile data: {str(e)}"
         )
+    
+@router.post("/user/favorites/{movie_id}")
+def toggle_favorite(
+    movie_id: int,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    # Find existing preference or create new one
+    preference = db.query(UserMoviePreference).filter(
+        UserMoviePreference.user_id == current_user.id,
+        UserMoviePreference.movie_id == movie_id
+    ).first()
+    
+    if preference:
+        # Toggle favorite status
+        preference.is_favorite = not preference.is_favorite
+        preference.updated_at = datetime.utcnow()
+    else:
+        # Create new preference with favorite enabled
+        preference = UserMoviePreference(
+            user_id=current_user.id,
+            movie_id=movie_id,
+            is_favorite=True,
+            is_watched=False,
+            is_in_watchlist=False
+        )
+        db.add(preference)
+    
+    db.commit()
+    db.refresh(preference)
+    
+    return {
+        "is_favorite": preference.is_favorite,
+        "message": "Favorite updated successfully" if preference.is_favorite else "Removed from favorites"
+    }
+
+@router.post("/user/watched/{movie_id}")
+def toggle_watched(
+    movie_id: int,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    # Find existing preference or create new one
+    preference = db.query(UserMoviePreference).filter(
+        UserMoviePreference.user_id == current_user.id,
+        UserMoviePreference.movie_id == movie_id
+    ).first()
+    
+    if preference:
+        # Toggle watched status
+        preference.is_watched = not preference.is_watched
+        preference.updated_at = datetime.utcnow()
+    else:
+        # Create new preference with watched enabled
+        preference = UserMoviePreference(
+            user_id=current_user.id,
+            movie_id=movie_id,
+            is_favorite=False,
+            is_watched=True,
+            is_in_watchlist=False
+        )
+        db.add(preference)
+    
+    db.commit()
+    db.refresh(preference)
+    
+    return {
+        "is_watched": preference.is_watched,
+        "message": "Marked as watched" if preference.is_watched else "Marked as unwatched"
+    }
+
+@router.post("/user/watchlist/{movie_id}")
+def toggle_watchlist(
+    movie_id: int,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    # Find existing preference or create new one
+    preference = db.query(UserMoviePreference).filter(
+        UserMoviePreference.user_id == current_user.id,
+        UserMoviePreference.movie_id == movie_id
+    ).first()
+    
+    if preference:
+        # Toggle watchlist status
+        preference.is_in_watchlist = not preference.is_in_watchlist
+        preference.updated_at = datetime.utcnow()
+    else:
+        # Create new preference with watchlist enabled
+        preference = UserMoviePreference(
+            user_id=current_user.id,
+            movie_id=movie_id,
+            is_favorite=False,
+            is_watched=False,
+            is_in_watchlist=True
+        )
+        db.add(preference)
+    
+    db.commit()
+    db.refresh(preference)
+    
+    return {
+        "is_in_watchlist": preference.is_in_watchlist,
+        "message": "Added to watchlist" if preference.is_in_watchlist else "Removed from watchlist"
+    }
+
+@router.get("/user/preferences/{movie_id}")
+def get_movie_preferences(
+    movie_id: int,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    preference = db.query(UserMoviePreference).filter(
+        UserMoviePreference.user_id == current_user.id,
+        UserMoviePreference.movie_id == movie_id
+    ).first()
+    
+    if preference:
+        return {
+            "is_favorite": preference.is_favorite,
+            "is_watched": preference.is_watched,
+            "is_in_watchlist": preference.is_in_watchlist
+        }
+    else:
+        return {
+            "is_favorite": False,
+            "is_watched": False,
+            "is_in_watchlist": False
+        }

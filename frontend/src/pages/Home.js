@@ -211,7 +211,7 @@ function Home() {
                 <div className="movie-scroll-container" ref={searchRef}>
                   {searchResults.map((movie) => (
                     <div key={movie.id} className="scroll-movie-card">
-                      <MovieCard movie={movie} />
+                      <MovieCard movie={movie} showActions={true} />
                     </div>
                   ))}
                 </div>
@@ -246,7 +246,7 @@ function Home() {
                 <div className="movie-scroll-container" ref={trendingRef}>
                   {trendingMovies.map((movie) => (
                     <div key={movie.id} className="scroll-movie-card">
-                      <MovieCard movie={movie} />
+                      <MovieCard movie={movie}showActions={true}  />
                     </div>
                   ))}
                 </div>
@@ -274,7 +274,7 @@ function Home() {
                 <div className="movie-scroll-container" ref={topRatedRef}>
                   {topRatedMovies.map((movie) => (
                     <div key={movie.id} className="scroll-movie-card">
-                      <MovieCard movie={movie} />
+                      <MovieCard movie={movie} showActions={true}  />
                     </div>
                   ))}
                 </div>
@@ -309,7 +309,7 @@ function Home() {
                     {genreMovies[genre.id] && genreMovies[genre.id].length > 0 ? (
                       genreMovies[genre.id].map((movie) => (
                         <div key={movie.id} className="scroll-movie-card">
-                          <MovieCard movie={movie} />
+                          <MovieCard movie={movie}showActions={true}  />
                         </div>
                       ))
                     ) : (
