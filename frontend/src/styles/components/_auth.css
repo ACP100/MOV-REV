@@ -1,0 +1,201 @@
+/* Authentication Styles */
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-primary);
+  padding: var(--spacing-lg) 0;
+}
+
+.auth-card {
+  background: var(--color-bg-secondary);
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 15px 35px rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--color-border);
+  width: 100%;
+  max-width: 450px;
+}
+
+.auth-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-text-primary);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.auth-subtitle {
+  text-align: center;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-lg);
+  font-weight: 400;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.form-label {
+  color: var(--color-text-primary);
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.form-input {
+  padding: 15px 20px;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-tertiary);
+  color: var(--color-text-primary);
+  font-size: 1rem;
+  transition: var(--transition-fast);
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+.form-input:focus {
+  border-color: var(--color-white);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.form-input::placeholder {
+  color: var(--color-gray-600);
+  font-weight: 400;
+}
+
+.auth-button {
+  padding: 15px;
+  background: var(--color-white);
+  border: none;
+  border-radius: var(--radius-md);
+  color: var(--color-black);
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  margin-top: var(--spacing-sm);
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.2px;
+  border: 2px solid var(--color-white);
+}
+
+.auth-button:hover {
+  transform: translateY(-2px);
+  background: transparent;
+  color: var(--color-white);
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+}
+
+.auth-button:active {
+  transform: translateY(0);
+}
+
+.auth-link {
+  text-align: center;
+  margin-top: var(--spacing-lg);
+  color: var(--color-text-secondary);
+  font-weight: 400;
+}
+
+.auth-link a {
+  color: var(--color-white);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-link a:hover {
+  text-decoration: underline;
+}
+
+.error-message {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--color-white);
+  color: var(--color-white);
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  text-align: center;
+  margin-bottom: var(--spacing-sm);
+  font-weight: 500;
+}
+
+.success-message {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--color-white);
+  color: var(--color-white);
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  text-align: center;
+  margin-bottom: var(--spacing-sm);
+  font-weight: 500;
+}
+
+/* Auth Overlay Styles */
+.auth-fullscreen-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-modal);
+  padding: var(--spacing-sm);
+}
+
+.close-overlay-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: var(--color-white);
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+  z-index: 1050;
+}
+
+.close-overlay-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+/* Make auth card stand out in overlay */
+.auth-fullscreen-overlay .auth-card {
+  margin: 0;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

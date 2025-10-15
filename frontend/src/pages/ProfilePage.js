@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import MovieCard from '../components/MovieCard';
-import '../styles/global.css';
+// import '../styles/global.css';
 
 function ProfilePage() {
   const [profileData, setProfileData] = useState(null);
@@ -192,7 +192,7 @@ function ProfilePage() {
 
             
           <button 
-            className={`tab-button ${activeTab === 'favorites' }`}
+            className={`tab-button ${activeTab === 'favorites'  ? 'active' : ''}`}
             onClick={() => setActiveTab('favorites')}
           >
             <div className="stats-card">  

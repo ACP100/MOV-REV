@@ -4,8 +4,8 @@ import MoviePage from './pages/MoviePage';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ProfilePage from './pages/ProfilePage';
-import './styles/global.css';
-
+// import './styles/global.css';
+import './styles/main.css';  // Instead of './styles/global.css'
 function App() {
   return (
     <Router>

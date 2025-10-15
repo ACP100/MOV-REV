@@ -1,0 +1,232 @@
+/* Profile Page Styles */
+.profile-header {
+  margin-bottom: var(--spacing-xl);
+  text-align: center;
+}
+
+.profile-info {
+  margin-bottom: var(--spacing-lg);
+}
+
+.profile-username {
+  font-size: 2.5rem;
+  color: var(--color-text-primary);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.profile-email {
+  color: var(--color-text-secondary);
+  font-size: 1.1rem;
+}
+
+/* Profile Tabs */
+.profile-tabs {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+
+.profile-tabs .tab-button {
+  padding: 12px 24px;
+  background: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: var(--transition-fast);
+  font-family: 'Inter', sans-serif;
+}
+
+.profile-tabs .tab-button:hover {
+  background: var(--color-gray-700);
+  border-color: var(--color-white);
+  color: var(--color-white);
+  transform: translateY(-2px);
+}
+
+.profile-tabs .tab-button.active {
+  background: var(--color-white);
+  border-color: var(--color-white);
+  color: var(--color-black);
+  transform: translateY(-2px);
+}
+
+/* Tab Content */
+.tab-content {
+  min-height: 400px;
+}
+
+/* Reviews Grid */
+.reviews-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.review-card {
+  background: var(--color-bg-secondary);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  transition: var(--transition-fast);
+}
+
+.review-card:hover {
+  border-color: var(--color-white);
+  transform: translateY(-2px);
+}
+
+.review-movie-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-sm);
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.review-movie-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.review-movie-title {
+  color: var(--color-white);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.review-movie-title:hover {
+  color: var(--color-white);
+  text-decoration: underline;
+}
+
+.review-rating {
+  background: var(--color-bg-tertiary);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: 20px;
+  font-weight: 600;
+  color: var(--color-white);
+  border: 1px solid var(--color-border);
+}
+
+.review-comment {
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-sm);
+  font-size: 1rem;
+}
+
+.review-date {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  text-align: right;
+}
+
+/* No Content Message */
+.no-content-message {
+  text-align: center;
+  padding: var(--spacing-xl);
+  color: var(--color-text-secondary);
+}
+
+.no-content-message h3 {
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-white);
+}
+
+.no-content-message p {
+  margin-bottom: var(--spacing-lg);
+  font-size: 1.1rem;
+}
+
+/* Movies Section */
+.movies-section {
+  padding: var(--spacing-sm) 0;
+}
+
+/* Profile Page Image Button Styles */
+.profile-page .button-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  filter: brightness(0) invert(1);
+}
+
+.profile-page .nav-button.home-button,
+.profile-page .nav-button.logout-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Profile Page Stats Icons */
+.profile-page .stats-icon-img {
+  width: 40px;
+  height: 40px;
+  filter: brightness(0) invert(1);
+}
+
+/* Profile Page Tab Icons */
+.profile-page .tab-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  filter: brightness(0) invert(1);
+}
+
+.profile-page .tab-button.active .tab-icon {
+  filter: brightness(0) invert(0);
+}
+
+/* Profile Page Rating Star */
+.profile-page .rating-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+  filter: brightness(0) invert(1);
+}
+
+.profile-page .movie-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.profile-page .review-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+@media (max-width: 768px) {
+  .profile-username {
+    font-size: 2rem;
+  }
+  
+  .profile-tabs {
+    gap: var(--spacing-xs);
+  }
+  
+  .profile-tabs .tab-button {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+  
+  .review-movie-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .review-rating {
+    align-self: flex-start;
+  }
+}

@@ -381,7 +381,7 @@
 
 
 
-import { useEffect, useState, useRef, useCallback } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import MovieCard from '../components/MovieCard';

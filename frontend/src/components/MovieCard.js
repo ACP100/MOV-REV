@@ -671,6 +671,7 @@ function MovieCard({ movie, showActions = true }) {
         {showActions && (
           <div className="movie-card-top-fade">
             <div className="movie-card-top-actions">
+              
               <button 
                 className={`top-action-btn favorite-btn ${isFavorite ? 'active' : ''}`}
                 onClick={handleFavorite}
@@ -682,6 +683,7 @@ function MovieCard({ movie, showActions = true }) {
                   className="action-icon"
                 />
               </button>
+
               <button 
                 className={`top-action-btn watched-btn ${isWatched ? 'active' : ''}`}
                 onClick={handleWatched}

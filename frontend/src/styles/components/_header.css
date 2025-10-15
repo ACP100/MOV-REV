@@ -1,0 +1,117 @@
+.header {
+  background: var(--color-bg-primary);
+  padding: 1rem 0;
+  width: 100%;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.app-logo {
+  height: 70px;
+  transition: var(--transition-fast);
+}
+
+.app-logo:hover {
+  transform: scale(1.05);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.2rem;
+  margin-left: 2rem;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.nav-menu {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.nav-buttons {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.nav-button {
+  padding: 10px 20px;
+  background: var(--color-bg-tertiary);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  transition: var(--transition-fast);
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.2px;
+}
+
+.nav-button:hover {
+  background: var(--color-gray-700);
+  transform: translateY(-2px);
+  border-color: var(--color-white);
+}
+
+.register-button {
+  background: var(--color-white);
+  color: var(--color-black);
+  border: 1px solid var(--color-white);
+}
+
+.register-button:hover {
+  background: transparent;
+  color: var(--color-white);
+}
+
+/* Image buttons */
+.profile-image-button,
+.home-image-button,
+.logout-image-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 20%;
+  transition: var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  text-decoration: none;
+}
+
+.profile-image-button:hover,
+.home-image-button:hover,
+.logout-image-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.1);
+}
+
+.profile-image-button img,
+.home-image-button img,
+.logout-image-button img {
+  width: 32px;
+  height: 32px;
+  filter: brightness(0) invert(1);
+  transition: var(--transition-fast);
+}
+
+.profile-image-button:hover img,
+.home-image-button:hover img,
+.logout-image-button:hover img {
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+}

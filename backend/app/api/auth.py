@@ -6,9 +6,12 @@ from datetime import datetime, timedelta
 from sqlalchemy.orm import Session
 from app.models.user import User
 from app.api.database import get_db
+import os
+from dotenv import load_dotenv
 
-# SECURITY CONFIG
-SECRET_KEY = "supersecretkey123456"  # ⚠️ Replace with a strong key in production!
+load_dotenv()  # Load environment variables from .env file
+
+SECRET_KEY = os.getenv("SECRET_KEY") 
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60
 
