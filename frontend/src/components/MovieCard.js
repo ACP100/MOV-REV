@@ -657,13 +657,15 @@ function MovieCard({ movie, showActions = true }) {
   return (
     <div className="movie-card-fade">
       <Link to={`/movie/${movie.id}`} style={{ textDecoration: 'none', display: 'block', height: '100%', position: 'relative' }}>
-        <img
-          src={movie.poster_path 
-            ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-            : '/placeholder-movie.jpg'
-          }
-          alt={movie.title}
-        />
+     <img
+      src={
+        movie.poster_path
+          ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+          : '/placeholder-movie.jpg'
+      }
+      alt={movie.title}
+      loading="lazy"
+      />
         
         {/* Conditionally render action buttons */}
         {showActions && (

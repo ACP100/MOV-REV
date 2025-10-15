@@ -8,6 +8,7 @@ from app.api.auth import get_current_user
 import requests
 from datetime import datetime
 import os
+import time
 
 router = APIRouter()
 
@@ -231,7 +232,8 @@ def get_movie_preferences(
     movie_id: int,
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db)
-):
+):  
+    start = time.time()
     preference = db.query(UserMoviePreference).filter(
         UserMoviePreference.user_id == current_user.id,
         UserMoviePreference.movie_id == movie_id
@@ -243,6 +245,7 @@ def get_movie_preferences(
             "is_watched": preference.is_watched,
             "is_in_watchlist": preference.is_in_watchlist
         }
+        
     else:
         return {
             "is_favorite": False,
