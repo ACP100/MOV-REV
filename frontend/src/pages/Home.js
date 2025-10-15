@@ -149,7 +149,7 @@ function Home() {
         type="text"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        placeholder="Search movies..."
+        placeholder="Search for movies movies..."
         className="search-input compact"
       />
       <button type="submit" className="search-icon-button">

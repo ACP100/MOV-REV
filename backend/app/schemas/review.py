@@ -1,4 +1,3 @@
-# review.py
 from pydantic import BaseModel
 
 class ReviewCreate(BaseModel):

@@ -24,8 +24,8 @@ body {
 .header {
   background: #000000;
   padding: 1rem 0;
-  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
-  border-bottom: 1px solid #333333;
+  /* box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1); */
+  /* border-bottom: 1px solid #333333; */
   width: 100%; /* Ensure full width */
 
 }
@@ -662,13 +662,13 @@ body {
   padding: 2rem;
   border-radius: 15px;
   text-align: center;
-  border: 1px solid #333333;
+  /* border: 1px solid #333333; */
   transition: all 0.3s ease;
 }
 
 .stats-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+  transform: scale(0.97);
+  /* box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2); */
   border-color: #ffffff;
 }
 
@@ -862,11 +862,11 @@ body {
 }
 
 .tab-button {
-  padding: 12px 24px;
+  /* padding: 12px 24px; */
   background: #1a1a1a;
-  border: 1px solid #333333;
+  border: 5px solid #333333;
   color: #cccccc;
-  border-radius: 25px;
+  border-radius: 20px;
   cursor: pointer;
   font-weight: 600;
   font-size: 1rem;
@@ -875,17 +875,19 @@ body {
 }
 
 .tab-button:hover {
-  background: #333333;
+  background: #ffffff;
   border-color: #ffffff;
   color: #ffffff;
-  transform: translateY(-2px);
+  /* transform: translateY(-2px); */
+  /* scale: (1.4) */
 }
 
 .tab-button.active {
   background: #ffffff;
   border-color: #ffffff;
   color: #000000;
-  transform: translateY(-2px);
+  transform: scale(1.1);
+   
 }
 
 .tab-button.active:hover {
@@ -1430,7 +1432,38 @@ body {
   transform: scale(1.1);
 }
 
-/* Auth Overlay Styles */
+
+.home-image-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 20%;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+
+.home-image-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.1);
+}
+
+.home-image-button img {
+  width: 52px;
+  height: 52px;
+  filter: brightness(0) invert(1); /* Makes the image white */
+  transition: all 0.3s ease;
+  margin-right: 10px;
+  margin-top: 8px
+}
+
+.home-image-button:hover img {
+  transform: scale(1.1);
+}
 /* Auth Overlay Styles */
 .auth-fullscreen-overlay {
   position: fixed;
@@ -2059,20 +2092,21 @@ body {
 }
 
 /* For the home and logout buttons in header */
-
+/* 
 .logout-image-button img,
 .profile-image-button img {
-  width: 32px; /* Adjust as needed */
+  width: 32px; 
   height: 32px;
   object-fit: contain;
-}
+} */
 
-.home-image-button img
+/* .home-image-button img
 {
-  width: 20px; /* Adjust as needed */
-  height: 20px;
-  object-fit: contain;
-}
+  width: 30px;
+  height: 30px;
+  
+  /* object-fit: contain;
+} */
 /* For tab icons */
 .tab-icon {
   width: 20px;
@@ -2082,8 +2116,8 @@ body {
 
 /* For stats icons */
 .stats-icon-img {
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
 }
 
 /* For rating icons */
@@ -2097,4 +2131,297 @@ body {
   width: 18px;
   height: 18px;
   margin-right: 6px;
+}
+
+
+/* Movie Page Specific Styles */
+.movie-page {
+  background-color: #000000;
+  min-height: 100vh;
+}
+
+.movie-header-section {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  align-items: flex-start;
+}
+
+.movie-poster-large {
+  flex-shrink: 0;
+  width: 300px;
+}
+
+.movie-poster-large img {
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+  border: 1px solid #333333;
+}
+
+.movie-info-main {
+  flex: 1;
+}
+
+.movie-title-main {
+  font-size: 2.5rem;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.movie-tagline {
+  font-size: 1.2rem;
+  color: #cccccc;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+  border-left: 3px solid #ffffff;
+  padding-left: 1rem;
+}
+
+.movie-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.movie-meta-grid .meta-item {
+  background: #1a1a1a;
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1px solid #333333;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.movie-meta-grid .meta-item strong {
+  color: #ffffff;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.movie-meta-grid .meta-item span {
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.rating-badge {
+  /* background: linear-gradient(135deg, #ffa726, #fb8c00); */
+  color: #000000;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.genres-section {
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.genre-tag {
+  background: #333333;
+  color: #ffffff;
+  padding: 0.4rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  border: 1px solid #555555;
+}
+
+.movie-overview-section {
+  margin-bottom: 2rem;
+}
+
+.movie-overview-section h3 {
+  color: #ffffff;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.movie-overview-text {
+  color: #cccccc;
+  line-height: 1.7;
+  font-size: 1.1rem;
+}
+
+/* Cast Section */
+.cast-section {
+  margin-bottom: 3rem;
+}
+
+.cast-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1.5rem;
+}
+
+.cast-card {
+  background: #0a0a0a;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #333333;
+  transition: all 0.3s ease;
+}
+
+.cast-card:hover {
+  transform: translateY(-5px);
+  border-color: #ffffff;
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+}
+
+.cast-photo {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.cast-info {
+  padding: 1rem;
+}
+
+.cast-info strong {
+  color: #ffffff;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.cast-info p {
+  color: #cccccc;
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+/* Reviews Section Updates */
+.reviews-grid {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.review-title {
+  color: #ffffff;
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.review-rating-badge {
+  background: #1a1a1a;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  border: 1px solid #333333;
+  white-space: nowrap;
+}
+
+.review-comment {
+  color: #cccccc;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.review-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.review-author {
+  color: #888888;
+  font-size: 0.9rem;
+}
+
+.review-author strong {
+  color: #ffa726;
+}
+
+.no-reviews {
+  text-align: center;
+  padding: 2rem;
+  color: #cccccc;
+  background: #1a1a1a;
+  border-radius: 10px;
+  border: 1px solid #333333;
+  margin-bottom: 2rem;
+}
+
+.login-prompt {
+  text-align: center;
+  padding: 2rem;
+  background: #1a1a1a;
+  border-radius: 10px;
+  border: 1px solid #333333;
+}
+
+.login-prompt p {
+  color: #cccccc;
+  margin: 0;
+}
+
+/* Similar Movies Section */
+.similar-movies-section {
+  margin-top: 3rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .movie-header-section {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .movie-poster-large {
+    width: 250px;
+  }
+  
+  .movie-title-main {
+    font-size: 2rem;
+  }
+  
+  .movie-meta-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .cast-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1rem;
+  }
+  
+  .review-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .movie-poster-large {
+    width: 200px;
+  }
+  
+  .movie-title-main {
+    font-size: 1.5rem;
+  }
+  
+  .cast-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

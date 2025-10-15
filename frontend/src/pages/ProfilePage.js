@@ -171,29 +171,59 @@ function ProfilePage() {
             <p className="profile-email">{user.email}</p>
           </div>
           
+          
+          
+          
           {/* Stats Cards */}
           <div className="stats-container">
+             <button 
+            className={`tab-button ${activeTab === 'reviews' ? 'active' : ''}`}
+            onClick={() => setActiveTab('reviews')}
+          >
             <div className="stats-card">
               <div className="stats-icon">
                 <img src="/icons/star_filled.png" alt="Reviews" className="stats-icon-img" />
               </div>
               <div className="stats-value">{stats.reviews_count}</div>
               <div className="stats-title">Reviews</div>
+      
             </div>
-            <div className="stats-card">
+            </button>
+
+            
+          <button 
+            className={`tab-button ${activeTab === 'favorites' }`}
+            onClick={() => setActiveTab('favorites')}
+          >
+            <div className="stats-card">  
               <div className="stats-icon">
                 <img src="/icons/heart_filled.png" alt="Favorites" className="stats-icon-img" />
               </div>
               <div className="stats-value">{stats.favorites_count}</div>
               <div className="stats-title">Favorites</div>
+
             </div>
+          </button>  
+          
+            
+          <button 
+            className={`tab-button ${activeTab === 'watched' ? 'active' : ''}`}
+            onClick={() => setActiveTab('watched')}
+          >
             <div className="stats-card">
               <div className="stats-icon">
                 <img src="/icons/eye_filled.png" alt="Watched" className="stats-icon-img" />
               </div>
               <div className="stats-value">{stats.watched_count}</div>
               <div className="stats-title">Watched</div>
+
             </div>
+          </button>  
+            
+             <button 
+            className={`tab-button ${activeTab === 'watchlist' ? 'active' : ''}`}
+            onClick={() => setActiveTab('watchlist')}
+          >   
             <div className="stats-card">
               <div className="stats-icon">
                 <img src="/icons/list_filled.png" alt="Watchlist" className="stats-icon-img" />
@@ -201,10 +231,14 @@ function ProfilePage() {
               <div className="stats-value">{stats.watchlist_count}</div>
               <div className="stats-title">Watchlist</div>
             </div>
+           </button>   
           </div>
         </div>
 
-        {/* Navigation Tabs */}
+        
+        
+        
+        {/* Navigation Tabs
         <div className="profile-tabs">
           <button 
             className={`tab-button ${activeTab === 'reviews' ? 'active' : ''}`}
@@ -234,7 +268,7 @@ function ProfilePage() {
             <img src="/icons/list_filled.png" alt="Watchlist" className="tab-icon" />
             Watchlist ({stats.watchlist_count})
           </button>
-        </div>
+        </div> */}
 
         {/* Tab Content */}
         <div className="tab-content">

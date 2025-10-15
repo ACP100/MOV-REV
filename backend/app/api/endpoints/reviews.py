@@ -30,10 +30,7 @@ def create_review(review: ReviewCreate, db: Session = Depends(get_db), current_u
         "comment": db_review.comment,
         "username": current_user.username  # Add username
     }
-# @router.get("/movies/{movie_id}/reviews")
-# def get_movie_reviews(movie_id: int, db: Session = Depends(get_db)):
-#     reviews = db.query(Review).filter(Review.movie_id == movie_id).all()
-#     return reviews
+
 @router.get("/movies/{movie_id}/reviews")
 def get_movie_reviews(movie_id: int, db: Session = Depends(get_db)):
     # Join with users table to get usernames
@@ -57,11 +54,6 @@ def get_movie_reviews(movie_id: int, db: Session = Depends(get_db)):
     
     return result
 
-# @router.get("/users/{user_id}/reviews")
-# def get_user_reviews(user_id: int, db: Session = Depends(get_db)):
-#     print("this")
-#     reviews = db.query(Review).filter(Review.user_id == user_id).all()
-#     return reviews
 @router.get("/users/{user_id}/reviews")
 def get_user_reviews(user_id: int, db: Session = Depends(get_db)):
     reviews = db.query(Review).filter(Review.user_id == user_id).all()
@@ -83,14 +75,6 @@ def get_user_reviews(user_id: int, db: Session = Depends(get_db)):
         })
     
     return result
-
-# @router.get("/users/me/reviews")
-# def get_my_reviews(db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
-#     print(f"Fetching reviews for user ID: {current_user.id}")  # Debug line
-#     reviews = db.query(Review).filter(Review.user_id == current_user.id).all()
-#     print(f"Found {len(reviews)} reviews for user {current_user.id}")  # Debug line
-#     return reviews
-
 
 @router.get("/users/me/reviews")
 def get_my_reviews(db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):

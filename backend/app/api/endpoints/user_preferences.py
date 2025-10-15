@@ -12,7 +12,7 @@ import os
 router = APIRouter()
 
 # Get TMDB API key from environment or use a fallback
-TMDB_API_KEY = os.getenv("TMDB_API_KEY", "your_tmdb_api_key_here")
+TMDB_API_KEY = os.getenv("TMDB_API_KEY")
 
 @router.get("/user/profile-data")
 def get_user_profile_data(
@@ -20,26 +20,26 @@ def get_user_profile_data(
     db: Session = Depends(get_db)
 ):
     try:
-        print(f"Fetching profile data for user: {current_user.username}")
+        # print(f"Fetching profile data for user: {current_user.username}")
         
         # Get user's reviews
         reviews = db.query(Review).filter(Review.user_id == current_user.id).all()
-        print(f"Found {len(reviews)} reviews")
+        # print(f"Found {len(reviews)} reviews")
         
         # Get user's movie preferences
         preferences = db.query(UserMoviePreference).filter(
             UserMoviePreference.user_id == current_user.id
         ).all()
-        print(f"Found {len(preferences)} preferences")
+        # print(f"Found {len(preferences)} preferences")
         
         # Separate movies by category
         favorite_movie_ids = [pref.movie_id for pref in preferences if pref.is_favorite]
         watched_movie_ids = [pref.movie_id for pref in preferences if pref.is_watched]
         watchlist_movie_ids = [pref.movie_id for pref in preferences if pref.is_in_watchlist]
         
-        print(f"Favorites: {favorite_movie_ids}")
-        print(f"Watched: {watched_movie_ids}")
-        print(f"Watchlist: {watchlist_movie_ids}")
+        # print(f"Favorites: {favorite_movie_ids}")
+        # print(f"Watched: {watched_movie_ids}")
+        # print(f"Watchlist: {watchlist_movie_ids}")
         
         # Fetch movie details from TMDB with error handling
         def get_movie_details(movie_id):
@@ -74,7 +74,7 @@ def get_user_profile_data(
             if movie_details:
                 watchlist.append(movie_details)
         
-        print(f"Successfully fetched {len(favorites)} favorites, {len(watched)} watched, {len(watchlist)} watchlist")
+        # print(f"Successfully fetched {len(favorites)} favorites, {len(watched)} watched, {len(watchlist)} watchlist")
         
         # Format reviews with movie details - NO created_at needed!
         reviews_with_movies = []
@@ -88,7 +88,7 @@ def get_user_profile_data(
                 "movie_poster": movie_details.get("poster_path") if movie_details else None,
                 "rating": review.rating,
                 "comment": review.comment,
-                "title": review.title  # Include the review title
+                "title": review.title  
             }
             
             reviews_with_movies.append(review_data)
