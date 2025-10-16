@@ -1,4 +1,6 @@
-/* ===== IMPORTS ===== */
+/* Order matters — base first, then components, then pages */
+
+/* === GLOBALS === */
 @import './globals/_reset.css';
 @import './globals/_variables.css';
 @import './globals/_typography.css';
@@ -6,17 +8,17 @@
 @import './globals/_utilities.css';
 @import './globals/_components.css';
 
-/* ===== COMPONENTS ===== */
+/* === COMPONENTS === */
 @import './components/_header.css';
-/* @import './components/_navigation.css'; */
 @import './components/_search.css';
 @import './components/_movie-card.css';
-@import './components/_movie-details.css';
+@import './components/_scroll-sections.css';
 @import './components/_auth.css';
 @import './components/_profile.css';
+@import './components/_movie-details.css';
 @import './components/_carousel.css';
-@import './components/_scroll-sections.css';
+@import './components/_back-to-top.css';
 
-/* ===== PAGES ===== */
+/* === PAGES === */
 @import './pages/_home.css';
 @import './pages/_movie-page.css';

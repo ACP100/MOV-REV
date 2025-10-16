@@ -8,18 +8,19 @@
 }
 
 .search-input {
-  padding: 12px 20px;
+  padding: 14px 24px; /* Increased padding */
   width: 100%;
   border: none;
   border-radius: 25px;
   background: var(--color-bg-tertiary);
   color: var(--color-text-primary);
-  font-size: 1rem;
+  font-size: 1.1rem; /* Increased font size */
   outline: none;
   border: 2px solid var(--color-border);
   transition: var(--transition-fast);
   font-family: 'Inter', sans-serif;
   font-weight: 400;
+  height: 50px; /* Fixed height for consistency */
 }
 
 .search-input:focus {
@@ -28,7 +29,7 @@
 }
 
 .search-button {
-  padding: 12px 30px;
+  padding: 14px 35px; /* Increased padding */
   background: var(--color-white);
   border: none;
   border-radius: 25px;
@@ -38,6 +39,8 @@
   transition: var(--transition-fast);
   font-family: 'Inter', sans-serif;
   border: 2px solid var(--color-white);
+  font-size: 1rem; /* Slightly larger font */
+  height: 50px; /* Match input height */
 }
 
 .search-button:hover {
@@ -60,18 +63,21 @@
 }
 
 .search-input.compact {
-  width: 250px;
-  padding: 10px 15px;
-  font-size: 0.9rem;
+  width: 350px; /* Increased width */
+  padding: 14px 50px 14px 20px; /* Increased padding, more right padding for icon */
+  font-size: 1.05rem; /* Slightly larger font */
+  height: 48px; /* Slightly taller */
 }
 
 .search-button.compact {
-  padding: 10px 15px;
-  font-size: 0.9rem;
+  padding: 14px 25px; /* Increased padding */
+  font-size: 1rem; /* Slightly larger font */
+  height: 48px; /* Match input height */
 }
 
 .search-button.compact.clear {
   background: var(--color-gray-600);
+  padding: 14px 18px; /* Adjusted for the X icon */
 }
 
 .search-button.compact.clear:hover {
@@ -83,39 +89,289 @@
   position: relative;
   display: flex;
   align-items: center;
+  flex: 1;
+  min-width: 250px;
 }
-
 .search-input.compact {
-  padding: 10px 40px 10px 15px;
-  width: 250px;
-  font-size: 0.9rem;
+  padding: 14px 50px 14px 20px; /* Increased padding, more right padding for icon */
+  width: 350px; /* Increased width */
+  font-size: 1.05rem; /* Slightly larger font */
+  height: 48px; /* Slightly taller */
 }
 
 .search-icon-button {
   position: absolute;
-  right: 8px;
+  right: 12px; /* Adjusted position */
   background: none;
   border: none;
-  color: var(--color-gray-600);
   cursor: pointer;
-  padding: 5px;
+  padding: 8px; /* Increased padding */
   border-radius: var(--radius-full);
   transition: var(--transition-fast);
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 32px; /* Increased size */
+  height: 32px; /* Increased size */
 }
 
 .search-icon-button:hover {
   background: rgba(255, 255, 255, 0.1);
-  color: var(--color-white);
   transform: scale(1.1);
 }
 
+.search-icon-button img {
+  width: 22px; /* Larger icon */
+  height: 22px; /* Larger icon */
+  filter: brightness(0.8);
+  transition: var(--transition-fast);
+  z-index: 2;
+
+}
+
+.search-icon-button:hover img {
+  filter: brightness(1);
+}
+
+/* Autocomplete Styles */
+.autocomplete-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  max-height: 300px;
+  overflow-y: auto;
+  margin-top: 6px; /* Slightly more margin for larger input */
+}
+
+.autocomplete-item {
+  display: flex;
+  align-items: center;
+  padding: 14px; /* Increased padding */
+  cursor: pointer;
+  border-bottom: 1px solid var(--color-border);
+  transition: var(--transition-fast);
+  gap: 14px; /* Increased gap */
+  text-decoration: none;
+  color: inherit;
+}
+
+.autocomplete-item:hover {
+  background: var(--color-bg-tertiary);
+  text-decoration: none;
+  color: inherit;
+}
+
+.autocomplete-item:last-child {
+  border-bottom: none;
+}
+
+.autocomplete-poster {
+  width: 45px; /* Slightly larger */
+  height: 65px; /* Slightly larger */
+  flex-shrink: 0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.autocomplete-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.autocomplete-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.autocomplete-title {
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1rem; /* Slightly larger */
+}
+
+.autocomplete-year {
+  font-size: 0.9rem; /* Slightly larger */
+  color: var(--color-text-secondary);
+}
+
+.autocomplete-loading {
+  padding: 20px;
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-style: italic;
+  font-size: 1rem; /* Slightly larger */
+}
+
+/* Ensure search input has proper z-index */
+.search-input.compact {
+  position: relative;
+  z-index: 1;
+}
+
+/* Mobile responsiveness */
 @media (max-width: 768px) {
   .search-input.compact {
-    width: 200px;
+    width: 280px; /* Still larger than before but adjusted for mobile */
+    padding: 12px 45px 12px 16px; /* Adjusted padding for mobile */
+    font-size: 1rem;
+    height: 44px;
+  }
+  
+  .search-icon-button {
+    right: 10px;
+    width: 28px;
+    height: 28px;
+  }
+  
+  .search-icon-button img {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .autocomplete-dropdown {
+    max-height: 250px;
+  }
+  
+  .autocomplete-item {
+    padding: 12px;
+    gap: 12px;
+  }
+  
+  .autocomplete-poster {
+    width: 40px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-input.compact {
+    width: 220px; /* Adjusted for very small screens */
+    padding: 10px 40px 10px 14px;
+    font-size: 0.95rem;
+    height: 42px;
+  }
+  
+  .search-button.compact {
+    padding: 10px 18px;
+    font-size: 0.9rem;
+    height: 42px;
+  }
+}
+
+
+/* Add to frontend/src/styles/components/_search.css */
+
+/* Search Filters Container */
+.search-filters-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Filter Select and Input Styles */
+.filter-select,
+.filter-input {
+  padding: 12px 16px;
+  border: 2px solid var(--color-border);
+  border-radius: 25px;
+  background: var(--color-bg-tertiary);
+  color: var(--color-text-primary);
+  font-size: 0.95rem;
+  outline: none;
+  transition: var(--transition-fast);
+  font-family: 'Inter', sans-serif;
+  height: 48px;
+  box-sizing: border-box;
+}
+
+.filter-select {
+  min-width: 140px;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'><path fill='%23666' d='M2 0L0 2h4zm0 5L0 3h4z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 12px;
+  padding-right: 40px;
+}
+
+.filter-input {
+  width: 100px;
+  text-align: center;
+}
+
+.filter-input::placeholder {
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+.filter-select:focus,
+.filter-input:focus {
+  border-color: var(--color-white);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.filter-select:hover,
+.filter-input:hover {
+  border-color: var(--color-gray-500);
+}
+
+/* Mobile responsiveness for filters */
+@media (max-width: 1024px) {
+  .search-filters-container {
+    gap: 8px;
+  }
+  
+  .filter-select {
+    min-width: 120px;
+    font-size: 0.9rem;
+  }
+  
+  .filter-input {
+    width: 90px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .search-filters-container {
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+  }
+  
+  .filter-select,
+  .filter-input {
+    width: 100%;
+    min-width: auto;
+  }
+  
+  .search-input.compact {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-filters-container {
+    gap: 6px;
+  }
+  
+  .filter-select,
+  .filter-input {
+    padding: 10px 14px;
+    height: 44px;
+    font-size: 0.9rem;
   }
 }

@@ -110,19 +110,32 @@
 }
 
 .top-action-btn {
-  background: transparent !important;
-  border: none !important;
   width: 50px;
   height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: var(--transition-fast);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  background: transparent !important;  /* removes any color */
+  backdrop-filter: none !important;    /* removes blur */
+  box-shadow: none !important;         /* removes shadow if any */
+  border: none !important; 
+  flex-shrink: 0; /* Add this to prevent stretching */
+
 }
 
 .top-action-btn:hover {
   transform: scale(1.1);
+}
+.top-action-btn.active {
+  background:none;
+  /* border-color: #ffffff; */
+}
+
+.top-action-btn.active:hover {
+  background:none;
 }
 
 .action-icon {
@@ -131,6 +144,12 @@
   transition: var(--transition-fast);
   background: none;
 }
+.top-action-btn.active .action-icon {
+  background: none;
+}
+
+.top-action-btn:hover .action-icon {
+background: none;}
 
 /* Scroll container adjustments */
 .movie-scroll-container .movie-card {
@@ -175,4 +194,110 @@
     width: 160px;
     height: 240px;
   }
+}
+
+.movie-card-fade {
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: var(--transition-normal);
+  border: 1px solid var(--color-border);
+  position: relative;
+  cursor: pointer;
+  height: 300px;
+}
+
+.movie-card-fade:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-white);
+}
+
+.movie-card-fade img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  transition: var(--transition-fast);
+}
+
+.movie-card-fade-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent);
+  padding: 1.8rem 1rem 1rem 1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.movie-card-fade:hover .movie-card-fade-content {
+  opacity: 1;
+}
+
+.movie-card-fade h3 {
+  font-size: 1.1rem;
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-text-primary);
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  max-height: 2.8em;
+}
+
+.movie-card-fade-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.movie-card-fade .movie-rating {
+  color: var(--color-text-primary);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.9rem;
+  letter-spacing: 0.2px;
+}
+
+.movie-card-fade .movie-year {
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+}
+
+.movie-scroll-container .movie-card-top-fade {
+  padding: 0.8rem 0.8rem 1.5rem 0.8rem;
+}
+
+.movie-scroll-container .top-action-btn {
+  width: 32px;
+  height: 32px;
+}
+
+.movie-scroll-container .action-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* Ensure proper z-index for clickability */
+.movie-card-fade {
+  position: relative;
+}
+
+.movie-card-fade-content {
+  z-index: 2;
+}
+
+.movie-card-top-fade {
+  z-index: 3;
 }

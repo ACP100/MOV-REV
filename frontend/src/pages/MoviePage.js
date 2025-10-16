@@ -553,27 +553,26 @@ function MoviePage() {
 
   return (
     <div className="movie-page">
-      {/* Close Button */}
-      <button onClick={handleClose} className="close-button">
-        <span>×</span>
-      </button>
+  {/* Close Button */}
+  <button onClick={handleClose} className="close-button">
+    <span>×</span>
+  </button>
+  
+  <div className="movie-layout">
+    {/* Left Column - Poster */}
+    <div className="poster-column">
+      <div className="movie-poster-large">
+        <img 
+          src={movie.poster_path 
+            ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+            : '/placeholder-movie.jpg'
+          } 
+          alt={movie.title}
+        />
+      </div>
       
-      <div className="movie-layout">
-        {/* Left Column - Movie Info */}
-        <div className="movie-info-column">
-          <div className="movie-poster-section">
-            <div className="movie-poster-large">
-              <img 
-                src={movie.poster_path 
-                  ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-                  : '/placeholder-movie.jpg'
-                } 
-                alt={movie.title}
-              />
-            </div>
-            
-            {/* Action Buttons */}
-            <div className="movie-action-buttons">
+      {/* Action Buttons below poster */}
+      <div className="movie-action-buttons">
         <button
           className={`movie-action-button ${isFavorite ? 'active' : ''}`}
           onClick={handleFavorite}
@@ -586,10 +585,10 @@ function MoviePage() {
           />
         </button>
 
-         <button
+        <button
           className={`movie-action-button ${isWatched ? 'active' : ''}`}
           onClick={handleWatched}
-           title={isWatched ? 'Mark as Unwatched' : 'Mark as Watched'}
+          title={isWatched ? 'Mark as Unwatched' : 'Mark as Watched'}
         >
           <img
             src={isWatched ? "/icons/eye_filled.png" : "/icons/eye_outline.png"}
@@ -602,107 +601,108 @@ function MoviePage() {
           className={`movie-action-button ${isInWatchlist ? 'active' : ''}`}
           onClick={handleWatchlist}
           title={isInWatchlist ? 'Remove from Watchlist' : 'Add to Watchlist'}
-  >
+        >
           <img
             src={isInWatchlist ? "/icons/list_filled.png" : "/icons/list_outline.png"}
             alt="Watchlist"
             className="movie-action-icon"
           />
-            </button>
-</div>
-          </div>
+        </button>
+      </div>
+    </div>
 
-          <div className="movie-details-section">
-            <h1 className="movie-title-main">{movie.title}</h1>
-            
-            {movie.tagline && (
-              <p className="movie-tagline">"{movie.tagline}"</p>
-            )}
-            
-            {/* Overview */}
-            <div className="movie-overview-section">
-              <h3>Overview</h3>
-              <p className="movie-overview-text">{movie.overview || 'No overview available.'}</p>
-            </div>
+    {/* Middle Column - Movie Info */}
+    <div className="movie-info-column">
+      <h1 className="movie-title-main">{movie.title}</h1>
+      
+      {movie.tagline && (
+        <p className="movie-tagline">"{movie.tagline}"</p>
+      )}
+      
+      {/* Overview */}
+      <div className="movie-overview-section">
+        <h3>Overview</h3>
+        <p className="movie-overview-text">{movie.overview || 'No overview available.'}</p>
+      </div>
 
-            {/* Movie Meta Data */}
-            <div className="movie-meta-grid">
-              <div className="meta-item">
-                <strong>Release Date:</strong> 
-                <span>{movie.release_date || 'N/A'}</span>
-              </div>
-              
-              <div className="meta-item">
-                <strong>Duration:</strong> 
-                <span>{formatRuntime(movie.runtime)}</span>
-              </div>
-              
-              <div className="meta-item">
-                <strong>Rating:</strong> 
-                <span className="rating-badge">
-                   {movie.vote_average?.toFixed(1)}/10
-                </span>
-              </div>
-              
-              <div className="meta-item">
-                <strong>Vote Count:</strong> 
-                <span>{movie.vote_count?.toLocaleString() || 0}</span>
-              </div>
-              
-              {movie.budget && movie.budget > 0 && (
-                <div className="meta-item">
-                  <strong>Budget:</strong> 
-                  <span>{formatCurrency(movie.budget)}</span>
-                </div>
-              )}
-              
-              {movie.revenue && movie.revenue > 0 && (
-                <div className="meta-item">
-                  <strong>Revenue:</strong> 
-                  <span>{formatCurrency(movie.revenue)}</span>
-                </div>
-              )}
-            </div>
-
-            {/* Genres */}
-            {movie.genres && movie.genres.length > 0 && (
-              <div className="genres-section">
-                <strong>Genres: </strong>
-                {movie.genres.map(genre => (
-                  <span key={genre.id} className="genre-tag">
-                    {genre.name}
-                  </span>
-                ))}
-              </div>
-            )}
-          </div>
+      {/* Movie Meta Data */}
+      <div className="movie-meta-grid">
+        <div className="meta-item">
+          <strong>Release Date:</strong> 
+          <span>{movie.release_date || 'N/A'}</span>
         </div>
-
-        {/* Right Column - Cast */}
-        {movie.credits?.cast && movie.credits.cast.length > 0 && (
-          <div className="cast-column">
-            <h2 className="section-title">Cast</h2>
-            <div className="cast-list">
-              {movie.credits.cast.slice(0, 12).map((actor) => (
-                <div key={actor.id} className="cast-item">
-                  <img
-                    src={actor.profile_path 
-                      ? `https://image.tmdb.org/t/p/w200${actor.profile_path}`
-                      : '/placeholder-person.jpg'
-                    }
-                    alt={actor.name}
-                    className="cast-photo-small"
-                  />
-                  <div className="cast-info-compact">
-                    <strong>{actor.name}</strong>
-                    <p>{actor.character}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+        
+        <div className="meta-item">
+          <strong>Duration:</strong> 
+          <span>{formatRuntime(movie.runtime)}</span>
+        </div>
+        
+        <div className="meta-item">
+          <strong>Rating:</strong> 
+          <span className="rating-badge">
+            {movie.vote_average?.toFixed(1)}/10
+          </span>
+        </div>
+        
+        <div className="meta-item">
+          <strong>Vote Count:</strong> 
+          <span>{movie.vote_count?.toLocaleString() || 0}</span>
+        </div>
+        
+        {movie.budget && movie.budget > 0 && (
+          <div className="meta-item">
+            <strong>Budget:</strong> 
+            <span>{formatCurrency(movie.budget)}</span>
+          </div>
+        )}
+        
+        {movie.revenue && movie.revenue > 0 && (
+          <div className="meta-item">
+            <strong>Revenue:</strong> 
+            <span>{formatCurrency(movie.revenue)}</span>
           </div>
         )}
       </div>
+
+      {/* Genres */}
+      {movie.genres && movie.genres.length > 0 && (
+        <div className="genres-section">
+          <strong>Genres: </strong>
+          {movie.genres.map(genre => (
+            <span key={genre.id} className="genre-tag">
+              {genre.name}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+
+    {/* Right Column - Cast */}
+    {movie.credits?.cast && movie.credits.cast.length > 0 && (
+      <div className="cast-column">
+        <h2 className="section-title">Cast</h2>
+        <div className="cast-list">
+          {movie.credits.cast.slice(0, 12).map((actor) => (
+            <div key={actor.id} className="cast-item">
+              <img
+                src={actor.profile_path 
+                  ? `https://image.tmdb.org/t/p/w200${actor.profile_path}`
+                  : '/placeholder-person.jpg'
+                }
+                alt={actor.name}
+                className="cast-photo-small"
+              />
+              <div className="cast-info-compact">
+                <strong>{actor.name}</strong>
+                <p>{actor.character}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+  </div>
+      
 
       {/* Reviews Section */}
       <div className="reviews-section">
