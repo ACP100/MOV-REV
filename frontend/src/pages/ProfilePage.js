@@ -1,8 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
-import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import MovieCard from '../components/MovieCard';
-// import '../styles/global.css';
+import { apiRequest } from '../utils/api';
 
 function ProfilePage() {
   const [profileData, setProfileData] = useState(null);
@@ -19,8 +18,11 @@ function ProfilePage() {
   // Function to fetch movie details from TMDB
   const fetchMovieDetails = useCallback(async (movieId) => {
     try {
-      const response = await axios.get(`http://localhost:8000/api/movies/${movieId}`);
-      return response.data;
+      const response = await fetch(`http://localhost:8000/api/movies/${movieId}`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return await response.json();
     } catch (error) {
       console.error(`Error fetching movie ${movieId}:`, error);
       return null;
@@ -48,14 +50,15 @@ function ProfilePage() {
         return;
       }
 
-      const response = await axios.get('http://localhost:8000/api/user/profile-data', {
-        headers: { 
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
+      const response = await apiRequest('http://localhost:8000/api/user/profile-data', {
+        method: 'GET'
       });
       
-      const data = response.data;
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const data = await response.json();
       setProfileData(data);
 
       // If we only have movie IDs, fetch the movie details
@@ -171,9 +174,6 @@ function ProfilePage() {
             <p className="profile-email">{user.email}</p>
           </div>
           
-          
-          
-          
           {/* Stats Cards */}
           <div className="stats-container">
              <button 
@@ -235,41 +235,6 @@ function ProfilePage() {
           </div>
         </div>
 
-        
-        
-        
-        {/* Navigation Tabs
-        <div className="profile-tabs">
-          <button 
-            className={`tab-button ${activeTab === 'reviews' ? 'active' : ''}`}
-            onClick={() => setActiveTab('reviews')}
-          >
-            <img src="/icons/star_filled.png" alt="Reviews" className="tab-icon" />
-            Reviews ({stats.reviews_count})
-          </button>
-          <button 
-            className={`tab-button ${activeTab === 'favorites' ? 'active' : ''}`}
-            onClick={() => setActiveTab('favorites')}
-          >
-            <img src="/icons/heart_filled.png" alt="Favorites" className="tab-icon" />
-            Favorites ({stats.favorites_count})
-          </button>
-          <button 
-            className={`tab-button ${activeTab === 'watched' ? 'active' : ''}`}
-            onClick={() => setActiveTab('watched')}
-          >
-            <img src="/icons/eye_filled.png" alt="Watched" className="tab-icon" />
-            Watched ({stats.watched_count})
-          </button>
-          <button 
-            className={`tab-button ${activeTab === 'watchlist' ? 'active' : ''}`}
-            onClick={() => setActiveTab('watchlist')}
-          >
-            <img src="/icons/list_filled.png" alt="Watchlist" className="tab-icon" />
-            Watchlist ({stats.watchlist_count})
-          </button>
-        </div> */}
-
         {/* Tab Content */}
         <div className="tab-content">
           {/* Reviews Tab */}
@@ -294,9 +259,9 @@ function ProfilePage() {
                         <h4 className="review-title">{review.title}</h4>
                       )}
                       <p className="review-comment">{review.comment}</p>
-                      <div className="review-date">
+                      {/* <div className="review-date">
                         Reviewed on {new Date(review.created_at).toLocaleDateString()}
-                      </div>
+                      </div> */}
                     </div>
                   ))}
                 </div>

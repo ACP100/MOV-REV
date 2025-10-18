@@ -489,7 +489,7 @@ function Home() {
           onClick={scrollToTop}
           aria-label="Back to top"
         >
-          <img src="/icons/up-arrow.png" alt="Up arrow" />
+          <img src="/icons/up_arrow.png" alt="Up arrow" />
         </button>
       )}
     </div>

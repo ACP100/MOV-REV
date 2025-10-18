@@ -6,8 +6,6 @@ from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.middleware.cors import CORSMiddleware
 
 
-
-
 app = FastAPI()
 
 # CORS for frontend
@@ -28,4 +26,4 @@ Base.metadata.create_all(bind=engine)
 app.include_router(users.router, prefix="/api")
 app.include_router(movies.router, prefix="/api")
 app.include_router(reviews.router, prefix="/api")
-app.include_router(user_preferences.router, prefix="/api")  # Add this line
+app.include_router(user_preferences.router, prefix="/api") 
